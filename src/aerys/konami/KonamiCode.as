@@ -8,20 +8,20 @@ package aerys.konami
 	[Event(name="triggered", type="aerys.konami.KonamiCodeEvent")]
 	public class KonamiCode extends Sprite
 	{		
-		private var _trigger			: Function	= null;
-		private var _state				: int		= 0;
+		private var _trigger            : Function  = null;
+		private var _state              : int       = 0;
 		
-		public static const SEQUENCE	: Array		=
+		public static const SEQUENCE    : Array     =
 		   [Keyboard.UP,
-			Keyboard.UP,
-			Keyboard.DOWN,
-			Keyboard.DOWN,
-			Keyboard.LEFT,
-			Keyboard.RIGHT,
-			Keyboard.LEFT,
-			Keyboard.RIGHT,
-			66,
-			65];
+		    Keyboard.UP,
+		    Keyboard.DOWN,
+		    Keyboard.DOWN,
+		    Keyboard.LEFT,
+		    Keyboard.RIGHT,
+		    Keyboard.LEFT,
+		    Keyboard.RIGHT,
+		    66,
+		    65];
 
 		public function KonamiCode()
 		{
