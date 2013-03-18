@@ -8,23 +8,26 @@ package aerys.konami
 	[Event(name="triggered", type="aerys.konami.KonamiCodeEvent")]
 	public class KonamiCode extends Sprite
 	{		
-		private var _trigger            : Function  = null;
-		private var _state              : int       = 0;
+		public static const DEFAULT_SEQUENCE    : Array     =
+			[Keyboard.UP,
+				Keyboard.UP,
+				Keyboard.DOWN,
+				Keyboard.DOWN,
+				Keyboard.LEFT,
+				Keyboard.RIGHT,
+				Keyboard.LEFT,
+				Keyboard.RIGHT,
+				Keyboard.B,
+				Keyboard.A];
 		
-		public static const SEQUENCE    : Array     =
-		   [Keyboard.UP,
-		    Keyboard.UP,
-		    Keyboard.DOWN,
-		    Keyboard.DOWN,
-		    Keyboard.LEFT,
-		    Keyboard.RIGHT,
-		    Keyboard.LEFT,
-		    Keyboard.RIGHT,
-		    66,
-		    65];
-
-		public function KonamiCode()
+		private var _trigger            		: Function  = null;
+		private var _state          		    : int       = 0;
+		private var _sequence					: Array		= null;
+		
+		public function KonamiCode(sequence : Array = null)
 		{
+			_sequence ||= DEFAULT_SEQUENCE;
+
 			addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 			addEventListener(Event.REMOVED_FROM_STAGE, removedFromStageHandler);
 		}
@@ -47,12 +50,12 @@ package aerys.konami
 		
 		private function keyDownHandler(event : KeyboardEvent) : void
 		{
-			if (event.keyCode == SEQUENCE[_state])
+			if (event.keyCode == _sequence[_state])
 				_state++;
 			else
 				_state = 0;
 			
-			if (_state == SEQUENCE.length)
+			if (_state == _sequence.length)
 			{
 				if (_trigger != null)
 					_trigger();
